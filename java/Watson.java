@@ -321,7 +321,7 @@ public class Watson<Arraylist>
 
             que = que + " " + catagory;//adding the category to the question
             que = que.replaceAll("\\r\\n", " ");
-            
+
 
             Query query = new QueryParser("isbn", anl).parse(QueryParser.escape(que));//Query Parser to parse the Question to "isbn" portion of the index for searching
 
@@ -523,25 +523,6 @@ public class Watson<Arraylist>
             System.out.println("For This Retrieval\nMean Reciprocal Rank = " + mrr);
         }
     }
-    public double count(String que,String isbn)
-    {
-        double d=0.0;
-        String ar1[]=que.split(" ");//splitting questions by space
-        String ar2[]=isbn.split(" ");//splitting isbn by space
-        for(String x:ar1)
-        {
-            double c=0;
-            for(String y:ar2)
-            {
-                if(y.equalsIgnoreCase(x))
-                {
-                    c++;
-                }
-            }
-            d=d+c;
-        }
-        return d;
-    }
 
     public double cosineSimilarity(ArrayList<Double> ar1, ArrayList<Double> ar2)// finding the cosine similarity of two arrayList
     {
@@ -724,7 +705,7 @@ public class Watson<Arraylist>
 
                 Watson ob = new Watson(wiki, que, index, "bm25", "english", false, false);
                 ob.tuned=true;
-                ob.index();
+                //ob.index();
                 ob.SearchIndexDocs();
                 config = "";
             }
@@ -751,7 +732,7 @@ public class Watson<Arraylist>
                 ob.SearchIndexDocs();
                 config = "";
             }
-            else {
+            else if(ch!=0){
                 System.out.println("Now Lets start");
                 Watson ob = new Watson(wiki, que, index, scoringFun, anlz, lem, stem);
                 ob.index();
