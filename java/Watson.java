@@ -108,7 +108,7 @@ public class Watson<Arraylist>
 
     public  void index() throws IOException//for indexing all the Wikipedia Documents
     {
-        System.out.println("I am here at index where fpi value is = "+fpi);
+        System.out.println("I am here at index and the wiki docs location is = "+fpi);
 
         Directory dir= FSDirectory.open(Paths.get(index));//using FSD instead of RAMD because the directory is big
         Analyzer anl;
@@ -321,8 +321,7 @@ public class Watson<Arraylist>
 
             que = que + " " + catagory;//adding the category to the question
             que = que.replaceAll("\\r\\n", " ");
-
-            String arSplit[] = ans.split("\\|");//split by the pages
+            
 
             Query query = new QueryParser("isbn", anl).parse(QueryParser.escape(que));//Query Parser to parse the Question to "isbn" portion of the index for searching
 
@@ -350,10 +349,10 @@ public class Watson<Arraylist>
                     String isbnArr[] = ansdc.get("isbn").split("(?<=[a-z])\\.\\s+");//Seplitting by the sentences
                     String isbn=(isbnArr.length>0?(isbnArr.length>4?isbnArr[0]+isbnArr[1]+isbnArr[2]+isbnArr[3]:isbnArr[0]):ansdc.get("isbn"));//Taking only the first two sentences if exists otherwise only the first sentence
                     isbn = removeSW(isbn);//removing all the stop words
-                    System.out.println("GloVe for isbn = " + isbn);//Debug
+                    //System.out.println("GloVe for isbn = " + isbn);//Debug
                     wikiD = glove(isbn);//finding out all the vectors
                     double cosS = cosineSimilarity(queD, wikiD);//finding the cosine similarity in between the two vectors of que and wiki page
-                    System.out.println(" the Cosine Similarity = " + cosS);
+                    //System.out.println(" the Cosine Similarity = " + cosS);
                     String docid = ansdc.get("docid");
                     newS.put(cosS, docid);
                 }
@@ -362,7 +361,7 @@ public class Watson<Arraylist>
                     dr1++;
                     int c=0;
                     if (ans.equalsIgnoreCase(x)) {
-                        System.out.println("Answer\n"+ans + "\n\n\nmathed with " + x + "\n\n\tThese score = "+dr1);
+                        //System.out.println("Answer\n"+ans + "\n\n\nmathed with " + x + "\n\n\tThese score = "+dr1);
                         if(dr1==1) {
                             vecP1++;//vector p@1
                         }
@@ -467,7 +466,7 @@ public class Watson<Arraylist>
                     dr2++;
                     int c=0;
                     if (ans.equalsIgnoreCase(x)) {
-                        System.out.println("Answer\n"+ans + "\n\n\nmathed with " + x + "\n\n\tThese score = "+dr2);
+                        //System.out.println("Answer\n"+ans + "\n\n\nmathed with " + x + "\n\n\tThese score = "+dr2);
                         if(dr2==1) {
                             tfP1++;//vector p@1
                         }
@@ -673,7 +672,7 @@ public class Watson<Arraylist>
                     System.out.println("Thank you for using this IR system :) and Have a nice Day");
                     break;
                 case 1:// The best config
-                    System.out.println("Here is the best cofig:\nAnalyzer is Standard and the Similarity is BM25 ");
+                    System.out.println("Here is the best cofig:\nAnalyzer is English and the Similarity is BM25 (Improved: Tuned) ");
                     config = "best";
                     break;
                 case 2:
