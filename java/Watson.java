@@ -705,7 +705,7 @@ public class Watson<Arraylist>
 
                 Watson ob = new Watson(wiki, que, index, "bm25", "english", false, false);
                 ob.tuned=true;
-                //ob.index();
+                ob.index();
                 ob.SearchIndexDocs();
                 config = "";
             }
