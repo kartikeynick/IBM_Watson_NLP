@@ -3,7 +3,7 @@ This is the final submission of the project of the course CSC 583
 This is a menu drivern program.
 
 Run the main method and follow the instructions.
-The best cconfiguration is already pre-setted inside the code. 
+The best configuration is already pre-setted inside the code. 
 
 Any option that you will pick will do indexing and searching together automatically.
 
